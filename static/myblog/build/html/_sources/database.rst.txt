@@ -5,4 +5,5 @@
     :maxdepth: 2
 
     database/influxdb.rst
+    database/querysummery.rst
   
