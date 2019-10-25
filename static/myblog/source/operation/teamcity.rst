@@ -103,3 +103,77 @@ angent安装出现 authorization token 时，复制 token回到 web 管理界面
 
 配置自动化发布
 ----------------------
+
+设置 Build Steps ,此例子总共6 步::
+	
+	build, login, push, stop rm, delete image, run.
+	Login主要是为了登陆阿里的容器仓库，实际上在非容器化部署的 agent 中只执行一次即可，主机会记住登陆信息。 
+
+
+.. figure:: /images/teamcityconfig1.png
+   :width: 180% 
+
+Buid::
+
+	创建 Build,比较简单 Runner Type 选择 Docker 即可。 给 Step 命名为 Build(随便命名可读即可)，Docker command 选择 build,
+	Path to file默认 TeamCity 会读取根目录下的 Dockerfile，也可以指定其他目录的 Dockerfile。
+	Image name:tag 根基实际情况指定。这里是用的阿里的registry.cn-beijing.aliyuncs.com/langzhe/ssj。
+
+
+.. figure:: /images/teamcitybuild.png
+   :width: 180% 
+
+
+Login::
+
+	授权允许访问仓库,Docker command 中没有 login，这里选择 other,在 Command name 中输入 login.
+	在 Additional arguments 中数据用户名密码和地址。
+
+.. figure:: /images/teamcitylogin.png
+   :width: 180% 
+
+Push  把镜像推到阿里镜像仓库，这个配置比较简单
+
+.. figure:: /images/teamcitypush.png
+   :width: 180% 
+
+stop rm::
+	测试的时候发现经常 Image 不更新，这里在 run 时，先把容器停掉并删除，同时把 Image 删除，run 的时候用的 latest.需要在主机上执行命令Runner Type要选择 CommandLine ,Run:选择 Custom script并输入以下脚本：
+
+.. figure:: /images/teamcitystop.png
+   :width: 180% 
+
+删除 Image，与第四步类似，脚本如下::
+
+	docker rmi `docker images |grep ssj |awk '{print $3}'` 
+
+
+.. figure:: /images/teamcityremoveimage.png
+   :width: 180% 
+
+第六步 run,与第二步类似::
+	
+	DockerComand选择 Other,在 Command name 中输入 run.
+	Additional arguments for the command:输入-p 80:80 -d  registry.cn-beijing.aliyuncs.com/langzhe/ssj
+
+.. figure:: /images/teamcityrun.png
+   :width: 180% 
+
+然后，执行 Run，这个过程需要反复调试。可以禁用一些 Steps.
+
+最后一定要设置 Trigers
+
+.. figure:: /images/teamcitytrigger1.png
+   :width: 180% 
+
+.. figure:: /images/teamcitytrigger2.png
+   :width: 180% 
+
+
+
+
+
+
+
+
+

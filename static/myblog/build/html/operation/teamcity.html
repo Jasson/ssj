@@ -323,6 +323,65 @@ TeamCity 提供平滑的学习曲线，你可以逐步的学习经它的高级�
 </div>
 <div class="section" id="id2">
 <h2>配置自动化发布<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>设置 Build Steps ,此例子总共6 步:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>build, login, push, stop rm, delete image, run.
+Login主要是为了登陆阿里的容器仓库，实际上在非容器化部署的 agent 中只执行一次即可，主机会记住登陆信息。
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityconfig1.png"><img alt="../_images/teamcityconfig1.png" src="../_images/teamcityconfig1.png" style="width: 180%;" /></a>
+</div>
+<p>Buid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>创建 Build,比较简单 Runner Type 选择 Docker 即可。 给 Step 命名为 Build(随便命名可读即可)，Docker command 选择 build,
+Path to file默认 TeamCity 会读取根目录下的 Dockerfile，也可以指定其他目录的 Dockerfile。
+Image name:tag 根基实际情况指定。这里是用的阿里的registry.cn-beijing.aliyuncs.com/langzhe/ssj。
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitybuild.png"><img alt="../_images/teamcitybuild.png" src="../_images/teamcitybuild.png" style="width: 180%;" /></a>
+</div>
+<p>Login:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>授权允许访问仓库,Docker command 中没有 login，这里选择 other,在 Command name 中输入 login.
+在 Additional arguments 中数据用户名密码和地址。
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitylogin.png"><img alt="../_images/teamcitylogin.png" src="../_images/teamcitylogin.png" style="width: 180%;" /></a>
+</div>
+<p>Push  把镜像推到阿里镜像仓库，这个配置比较简单</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitypush.png"><img alt="../_images/teamcitypush.png" src="../_images/teamcitypush.png" style="width: 180%;" /></a>
+</div>
+<dl class="docutils">
+<dt>stop rm::</dt>
+<dd>测试的时候发现经常 Image 不更新，这里在 run 时，先把容器停掉并删除，同时把 Image 删除，run 的时候用的 latest.需要在主机上执行命令Runner Type要选择 CommandLine ,Run:选择 Custom script并输入以下脚本：</dd>
+</dl>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitystop.png"><img alt="../_images/teamcitystop.png" src="../_images/teamcitystop.png" style="width: 180%;" /></a>
+</div>
+<p>删除 Image，与第四步类似，脚本如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rmi `docker images |grep ssj |awk &#39;{print $3}&#39;`
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityremoveimage.png"><img alt="../_images/teamcityremoveimage.png" src="../_images/teamcityremoveimage.png" style="width: 180%;" /></a>
+</div>
+<p>第六步 run,与第二步类似:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DockerComand选择</span> <span class="n">Other</span><span class="p">,</span><span class="n">在</span> <span class="n">Command</span> <span class="n">name</span> <span class="n">中输入</span> <span class="n">run</span><span class="o">.</span>
+<span class="n">Additional</span> <span class="n">arguments</span> <span class="k">for</span> <span class="n">the</span> <span class="n">command</span><span class="p">:</span><span class="n">输入</span><span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">-</span><span class="n">d</span>  <span class="n">registry</span><span class="o">.</span><span class="n">cn</span><span class="o">-</span><span class="n">beijing</span><span class="o">.</span><span class="n">aliyuncs</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">langzhe</span><span class="o">/</span><span class="n">ssj</span>
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityrun.png"><img alt="../_images/teamcityrun.png" src="../_images/teamcityrun.png" style="width: 180%;" /></a>
+</div>
+<p>然后，执行 Run，这个过程需要反复调试。可以禁用一些 Steps.</p>
+<p>最后一定要设置 Trigers</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitytrigger1.png"><img alt="../_images/teamcitytrigger1.png" src="../_images/teamcitytrigger1.png" style="width: 180%;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitytrigger2.png"><img alt="../_images/teamcitytrigger2.png" src="../_images/teamcitytrigger2.png" style="width: 180%;" /></a>
+</div>
 </div>
 </div>
 
