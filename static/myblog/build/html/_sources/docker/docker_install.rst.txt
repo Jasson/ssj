@@ -103,3 +103,72 @@ docker
 
 	docker rm `docker ps -a |awk '{print $1}' | grep [0-9a-z]`
 
+进入容器 shell::
+	
+	docker exec -it 3412c530d267 sh
+
+
+停止状态为Exited的容器::
+
+	docker ps -a | grep "Exited" | awk '{print $1 }'|xargs docker stop
+
+删除状态为Exited的容器::
+
+	docker ps -a | grep "Exited" | awk '{print $1 }'|xargs docker rm
+
+删除 tag名称为none的image::
+
+	docker images|grep none|awk '{print $3 }'|xargs docker rmi
+	docker rmi $(docker images|grep none|awk '{print $3 }')
+
+
+杀死所有正在运行的容器::
+
+	docker kill $(docker ps -a -q)
+
+删除所有已经停止的容器::
+
+	docker rm $(docker ps -a -q)
+
+删除所有未打 dangling 标签的镜像::
+
+	docker rmi $(docker images -q -f dangling=true)
+
+删除所有镜像::
+
+	docker rmi $(docker images -q)
+
+
+为这些命令创建别名
+
+# ~/.bash_aliases::
+
+	# 杀死所有正在运行的容器.
+	alias dockerkill='docker kill $(docker ps -a -q)'
+
+	# 删除所有已经停止的容器.
+	alias dockercleanc='docker rm $(docker ps -a -q)'
+
+	# 删除所有未打标签的镜像.
+	alias dockercleani='docker rmi $(docker images -q -f dangling=true)'
+
+	# 删除所有已经停止的容器和未打标签的镜像.
+	alias dockerclean='dockercleanc || true && dockercleani'
+
+
+Q&A
+----------------------------
+
+镜像删除失败::
+
+	第一个镜像直接docker rmi 74f5aea45cf6就删除成功了，然而后面两个镜像都是成对出现，直接docker rmi删除失败，报错信息如下：
+	Error response from daemon:
+	conflict: unable to delete b3cd25f64a2a (must be forced) - image 
+	is referenced in multiple repositories
+
+	解决方案:
+
+	首先docker rmi时指定名称，而非image id，然后再执行docker rmi -f image idj即可
+	docker rmi paddlepaddle/paddle:1.1.0-gpu-cuda8.0-cudnn7
+	docker rmi -f b3cd25f64a2a
+

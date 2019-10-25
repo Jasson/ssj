@@ -3,6 +3,7 @@
 个人随手记
 ====================================
 
+
 内容:
 
 .. toctree::
@@ -13,7 +14,13 @@
    docker
    tools
    database
-   inspiration
    operation
+   inspiration
+
+
+.. figure:: /images/my.png
+   :width: 180 
+
+
    
 

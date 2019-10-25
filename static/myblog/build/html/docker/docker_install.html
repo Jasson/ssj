@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">镜像加速</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#docker-ce">删除 Docker CE</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-a">Q&amp;A</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="aidocker.html">2.2. 阿里 Docker 服务按量付费</a></li>
@@ -161,8 +162,16 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../inspiration.html">5. 感想 随手记</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../inspiration/inspiration.html">5.1. 感想随手记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operation.html">5. 运维相关 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operation/teamcity.html">5.1. TeamCity 之旅</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operation/teamcity.html#id1">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operation/teamcity.html#id2">配置自动化发布</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inspiration.html">6. 感想 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inspiration/inspiration.html">6.1. 感想随手记</a></li>
 </ul>
 </li>
 </ul>
@@ -323,6 +332,70 @@ $ sudo rm -rf /var/lib/docker</dd>
 </div>
 <p>批量删除 容器:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rm `docker ps -a |awk &#39;{print $1}&#39; | grep [0-9a-z]`
+</pre></div>
+</div>
+<p>进入容器 shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="mi">3412</span><span class="n">c530d267</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>停止状态为Exited的容器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;Exited&quot;</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $1 }&#39;</span><span class="o">|</span><span class="n">xargs</span> <span class="n">docker</span> <span class="n">stop</span>
+</pre></div>
+</div>
+<p>删除状态为Exited的容器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;Exited&quot;</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $1 }&#39;</span><span class="o">|</span><span class="n">xargs</span> <span class="n">docker</span> <span class="n">rm</span>
+</pre></div>
+</div>
+<p>删除 tag名称为none的image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker images|grep none|awk &#39;{print $3 }&#39;|xargs docker rmi
+docker rmi $(docker images|grep none|awk &#39;{print $3 }&#39;)
+</pre></div>
+</div>
+<p>杀死所有正在运行的容器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker kill $(docker ps -a -q)
+</pre></div>
+</div>
+<p>删除所有已经停止的容器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rm $(docker ps -a -q)
+</pre></div>
+</div>
+<p>删除所有未打 dangling 标签的镜像:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rmi $(docker images -q -f dangling=true)
+</pre></div>
+</div>
+<p>删除所有镜像:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rmi $(docker images -q)
+</pre></div>
+</div>
+<p>为这些命令创建别名</p>
+<p># ~/.bash_aliases:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 杀死所有正在运行的容器.</span>
+<span class="n">alias</span> <span class="n">dockerkill</span><span class="o">=</span><span class="s1">&#39;docker kill $(docker ps -a -q)&#39;</span>
+
+<span class="c1"># 删除所有已经停止的容器.</span>
+<span class="n">alias</span> <span class="n">dockercleanc</span><span class="o">=</span><span class="s1">&#39;docker rm $(docker ps -a -q)&#39;</span>
+
+<span class="c1"># 删除所有未打标签的镜像.</span>
+<span class="n">alias</span> <span class="n">dockercleani</span><span class="o">=</span><span class="s1">&#39;docker rmi $(docker images -q -f dangling=true)&#39;</span>
+
+<span class="c1"># 删除所有已经停止的容器和未打标签的镜像.</span>
+<span class="n">alias</span> <span class="n">dockerclean</span><span class="o">=</span><span class="s1">&#39;dockercleanc || true &amp;&amp; dockercleani&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="q-a">
+<h2>Q&amp;A<a class="headerlink" href="#q-a" title="Permalink to this headline">¶</a></h2>
+<p>镜像删除失败:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>第一个镜像直接docker rmi 74f5aea45cf6就删除成功了，然而后面两个镜像都是成对出现，直接docker rmi删除失败，报错信息如下：
+Error response from daemon:
+conflict: unable to delete b3cd25f64a2a (must be forced) - image
+is referenced in multiple repositories
+
+解决方案:
+
+首先docker rmi时指定名称，而非image id，然后再执行docker rmi -f image idj即可
+docker rmi paddlepaddle/paddle:1.1.0-gpu-cuda8.0-cudnn7
+docker rmi -f b3cd25f64a2a
 </pre></div>
 </div>
 </div>
