@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.2. InfluxDb 时间范围查询总结 &mdash; 郎哲的随手记 V1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. 运维相关 随手记" href="../operation.html" />
+    <link rel="prev" title="4.1. InfluxDb 入门" href="influxdb.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 郎哲的随手记
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                V1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../GoSSJ.html">1. Go 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/unit_test.html">1.1. Go 单元测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id1">如何一个命令执行所有Go的测试代码？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id2">Go 单元测试基本知识</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id3">标记单元测试结果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id4">Go 单元测试进阶命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#ginkgo">补充：ginkgo 工具</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#conf-db">我只想执行一个查询数据的语句，（单元测试涉及到 conf,DB 时需要注意的问题）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/gogetlocal.html">1.2. Go get 本地库</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#go-get-ssl">go get 获取默认是 ssl 验证的</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#parsing-go-mod-unexpected-module-path-auth">parsing go.mod: unexpected module path “auth”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#id1">另外几个错误</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker.html">2. Docker 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker_install.html">2.1. Docker 安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_install.html#id1">镜像加速</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_install.html#docker-ce">删除 Docker CE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_install.html#id2">docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_install.html#q-a">Q&amp;A</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/aidocker.html">2.2. 阿里 Docker 服务按量付费</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/first_go.html">2.3. docker 发布 第一个 GO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_go.html#main-go">1.编写一个 main.go</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_go.html#dockerfile">2.创建一个 Dockerfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_go.html#id1">3.编译镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_go.html#id2">4.运行并创建一个容器</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker_compose.html">2.4. docker compose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id1">1、Docker-Compose简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id2">2、Docker-Compose安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id3">3、Docker-Compose卸载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id4">4、Docker-Compose命令格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id5">5、Docker-Compose模板文件简介</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker_hub.html">2.5. docker hub发布项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_hub.html#id1">上传镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_hub.html#id2">拉取镜像</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/first_compose.html">2.6. docker-compose 发布 第一个 GO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#main-go">1.编写一个 main.go</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#dockerfile">2.创建一个 Dockerfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#build-sh">3.创建  build.sh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#id1">3.编译镜像：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#docker-compose-yml">4.创建一个docker-compose.yml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#id2">4.运行并创建一个容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#ok">5.测试 OK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker_compose_yml.html">2.7. docker-compose.yml 解释</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">3. 常用工具 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tool.html">3.1. 常用工具 随手记</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tools/tool.html#screen">screen 配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../database.html">4. 数据库 随手记</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="influxdb.html">4.1. InfluxDb 入门</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="influxdb.html#shell">shell 访问阿里</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. InfluxDb 时间范围查询总结</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">问题：数据查不出来，查询数据少了 8 小时</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">时区知识点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operation.html">5. 运维相关 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operation/teamcity.html">5.1. TeamCity 之旅</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operation/teamcity.html#id1">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operation/teamcity.html#id2">配置自动化发布</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inspiration.html">6. 感想 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inspiration/inspiration.html">6.1. 感想随手记</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">郎哲的随手记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../database.html">4. 数据库 随手记</a> &raquo;</li>
+        
+      <li>4.2. InfluxDb 时间范围查询总结</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="influxdb">
+<h1>4.2. InfluxDb 时间范围查询总结<a class="headerlink" href="#influxdb" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>问题：数据查不出来，查询数据少了 8 小时<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>从 InfluxDB查询数据发现当前数据查不出来，分析发现少了 8 小时。
+所以在查询语句中减去了 8 小时，虽然数据可以查出来了，但是 group by 时，显示的数据会多一天。</p>
+<p>先了解一下时区有助于理解下面查询结果，
+RFC3339详细定义了互联网上日期/时间的偏移量表示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">00.00</span><span class="n">Z</span>
+</pre></div>
+</div>
+<p>这个代表了UTC时间的2017年12月08日零时:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    2017-12-08T00:08:00.00+08:00
+东八区的本地时间比零时区的本地时间快了8个小时。
+</pre></div>
+</div>
+<p>在后台管理系统上输入的是东八区时间。</p>
+<p>查了一下代码是这么写的’2019-10-18T00:00:00Z’，这样比实际时间多了 8 小时。通常是把查询条件减去8 小时就大吉大利了:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="n">user_id_val</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">user_day</span> <span class="n">where</span> <span class="n">time</span> <span class="o">&gt;=</span> <span class="s1">&#39;2019-10-18T00:00:00Z&#39;</span> <span class="ow">and</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="s1">&#39;2019-10-23T00:00:00Z&#39;</span> <span class="n">group</span> <span class="n">by</span> <span class="n">time</span><span class="p">(</span><span class="mi">1</span><span class="n">d</span><span class="p">)</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">user_day</span>
+<span class="n">time</span>                 <span class="n">count</span>
+<span class="o">----</span>                 <span class="o">-----</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7522</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">19</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7355</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7740</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">21</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">5997</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">22</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">5430</span>
+</pre></div>
+</div>
+<p>减去 8 小时候后查询的结果如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="n">user_id_val</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">user_day</span> <span class="n">where</span> <span class="n">time</span> <span class="o">&gt;=</span> <span class="s1">&#39;2019-10-17T16:00:00Z&#39;</span> <span class="ow">and</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="s1">&#39;2019-10-22T16:00:00Z&#39;</span> <span class="n">group</span> <span class="n">by</span> <span class="n">time</span><span class="p">(</span><span class="mi">1</span><span class="n">d</span><span class="p">)</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">user_day</span>
+<span class="n">time</span>                 <span class="n">count</span>
+<span class="o">----</span>                 <span class="o">-----</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">17</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7641</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7522</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">19</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7355</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7740</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">21</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">5997</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">22</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>显示的结果中，最后一天没有数据，误以为错了，此处省略………
+最后一天显示 0，终于知道那个叫晕的小伙伴为什么把结果减了 1.这样只是把 显示 零的问题消除了，导致结果偏移了一天。
+既然减去了8 小时显示结果中的日期也是少了 8 小时，加上就自然对了。
+感觉这样不完美，压根就不想让这个多余的 0 出现。因为查询的调条件跨越了 8 小时导致查询的结果比预期的多了天。</p>
+<p>下面是用东八区格式查询的数据与R3339 查询的结果一样。都是因为跨越了8 小时导致多查了一天:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="n">user_id_val</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">user_day</span> <span class="n">where</span> <span class="n">time</span> <span class="o">&gt;=</span> <span class="s1">&#39;2019-10-18T00:00:00+08:00&#39;</span> <span class="ow">and</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="s1">&#39;2019-10-23T00:00:00+08:00&#39;</span> <span class="n">group</span> <span class="n">by</span> <span class="n">time</span><span class="p">(</span><span class="mi">1</span><span class="n">d</span><span class="p">)</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">user_day</span>
+<span class="n">time</span>                 <span class="n">count</span>
+<span class="o">----</span>                 <span class="o">-----</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">17</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7641</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7522</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">19</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7355</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">7740</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">21</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">5997</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">22</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>找到了原因如何查询呢？那个叫晕的小伙伴提供了如下查询方式，influxddb 查询时指定时区。大吉大利!:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">count</span><span class="p">(</span><span class="n">user_id_val</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">user_day</span> <span class="n">where</span> <span class="n">time</span> <span class="o">&gt;=</span> <span class="s1">&#39;2019-10-18T00:00:00+08:00&#39;</span> <span class="ow">and</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="s1">&#39;2019-10-23T00:00:00+08:00&#39;</span> <span class="n">group</span> <span class="n">by</span> <span class="n">time</span><span class="p">(</span><span class="mi">1</span><span class="n">d</span><span class="p">)</span>    <span class="n">TZ</span><span class="p">(</span><span class="s1">&#39;Asia/Shanghai&#39;</span><span class="p">)</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">user_day</span>
+<span class="n">time</span>                      <span class="n">count</span>
+<span class="o">----</span>                      <span class="o">-----</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mi">00</span> <span class="mi">7641</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">19</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mi">00</span> <span class="mi">7522</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mi">00</span> <span class="mi">7355</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">21</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mi">00</span> <span class="mi">7740</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">22</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mi">00</span> <span class="mi">5997</span>
+</pre></div>
+</div>
+<p>本地时间只包括当前的时间，不包含任何时区信息。同一时刻，东八区的本地时间比零时区的本地时间快了8个小时。在不同时区之间交换时间数据，除了用纯数字的时间戳，还有一种更方便人类阅读的表示方式：标准时间的偏移量表示方法。</p>
+<p>RFC3339详细定义了互联网上日期/时间的偏移量表示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">00.00</span><span class="n">Z</span>
+</pre></div>
+</div>
+<p>这个代表了UTC时间的2017年12月08日零时:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2017</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span><span class="n">T00</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mf">00.00</span><span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mi">00</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>时区知识点<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>这个代表了同一时刻的，东八区北京时间（CST）表示的方法
+上面两个时间的时间戳是等价的。两个的区别，就是在本地时间后面增加了时区信息。Z表示零时区。+08:00表示UTC时间增加8小时。
+这种表示方式容易让人疑惑的点是从标准时间换算UTC时间。以CST转换UTC为例，没有看文档的情况下，根据 +08:00 的结尾，很容易根据直觉在本地时间再加上8小时。正确的计算方法是本地时间减去多增加的8小时。+08:00减去8小时才是UTC时间，-08:00加上8小时才是UTC时间。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../operation.html" class="btn btn-neutral float-right" title="5. 运维相关 随手记" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="influxdb.html" class="btn btn-neutral" title="4.1. InfluxDb 入门" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2029, 郎哲-langzhe 京ICP备19045748 http://www.beian.miit.gov.cn.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'V1.0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
