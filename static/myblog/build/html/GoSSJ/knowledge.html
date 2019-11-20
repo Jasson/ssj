@@ -269,6 +269,14 @@ return nil, errors.New(&quot;非法的token&quot;)
   }
 </pre></div>
 </div>
+<p>time用法</p>
+<p>readTimeOut:=1
+var a time.Duration
+a = readTimeOut  提示错误</p>
+<p>time.Duration 是 int64
+a:=int64(readTimeOut)也是错误</p>
+<blockquote>
+<div>time.Duration(writeTimeOut)//这个 OK</div></blockquote>
 </div>
 </div>
 

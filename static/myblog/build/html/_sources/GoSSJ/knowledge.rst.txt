@@ -21,3 +21,12 @@ Go 遇到的错误
    		return jwtToken, nil
 	}
 
+time用法 ::
+
+readTimeOut:=1
+var a time.Duration
+a = readTimeOut  提示错误
+
+time.Duration 是 int64
+a:=int64(readTimeOut)也是错误
+ time.Duration(writeTimeOut)//这个 OK
