@@ -2,30 +2,22 @@ Go 遇到的错误
 ########################################
 
 
-跨域
+
+类型转换
 ----------------------------------------------------------------------------------
 
+类型转换::
 
-跨域::
+	if !(ok && token.Valid) {
+      return nil, errors.New("非法的token")
+  	 }
 
-	assetsSubDirectory: 'static',
-	assetsPublicPath: '/',
-	proxyTable: {
-	  // '/v2.0/': {
-	  //   // target: 'http://127.0.0.1:8443',
-	  //   target: 'https://deviot.langxw.com.cn',
-	  //   changeOrigin: true,
-	  //   pathRewrite: {
-	  //     '^/v2.0/': '/v2.0/'
-	  //   }
-	  //
-	  // },
-	  '/langxwid/': {
-	    target: 'http://127.0.0.1:8000',
-	    // target: 'https://deviot.langxw.com.cn',
-	    changeOrigin: true,
-	    pathRewrite: {
-	      '^/langxwid/': '/langxwid/'
-	    }
-	  }
-	},
+  	 jwtToken := &JwtToken{
+  	    Uid: claims["uid"].(string),
+    	  Sid: claims["sid"].(string),
+      	Iat: int64(claims["iat"].(float64)),
+      	Exp:int64(claims["exp"].(float64)),
+   		}
+   		return jwtToken, nil
+	}
+
