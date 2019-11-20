@@ -23,15 +23,16 @@ Docker-Compose项目由Python编写，调用Docker服务提供的API来对容器
 
 
 安装pip
+
 yum -y install epel-release
 yum -y install python-pip
 确认版本
 
-pip --version
+pip - -version
 
 更新pip
 
-pip install --upgrade pip
+pip install - -upgrade pip
 
 安装docker-compose
 
@@ -797,3 +798,17 @@ docker-compose up -d
     http://127.0.0.1:6062
 
     http://127.0.0.1:6063
+
+6、安装Docker-Compose遇到的问题
+-------------------------------
+
+1.ImportError: 'module' object has no attribute 'check_specifier::
+  
+  网上查到 pip install --upgrade setuptools==30.1.0
+
+  再安装时候还是提示版本过低用 pip install --upgrade setuptools==36.1.0 解决的
+
+2.接下来遇到了 ERROR: Package 'more-itertools' requires a different Python: 2.7.5 not in '::
+
+  执行 pip install more-itertools==5.0.0 解决
+

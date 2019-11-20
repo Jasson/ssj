@@ -123,6 +123,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id3">3、Docker-Compose卸载</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">4、Docker-Compose命令格式</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">5、Docker-Compose模板文件简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">6、安装Docker-Compose遇到的问题</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docker_hub.html">2.5. docker hub发布项目</a><ul>
@@ -251,13 +252,13 @@
 </div>
 <div class="section" id="id2">
 <h2>2、Docker-Compose安装<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>安装pip
-yum -y install epel-release
+<p>安装pip</p>
+<p>yum -y install epel-release
 yum -y install python-pip
 确认版本</p>
-<p>pip –version</p>
+<p>pip - -version</p>
 <p>更新pip</p>
-<p>pip install –upgrade pip</p>
+<p>pip install - -upgrade pip</p>
 <p>安装docker-compose</p>
 <p>pip install docker-compose</p>
 <p>查看版本</p>
@@ -795,6 +796,19 @@ net: “host”
 <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">6062</span>
 
 <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">6063</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>6、安装Docker-Compose遇到的问题<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>1.ImportError: ‘module’ object has no attribute ‘check_specifier:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">网上查到</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">setuptools</span><span class="o">==</span><span class="mf">30.1</span><span class="o">.</span><span class="mi">0</span>
+
+<span class="n">再安装时候还是提示版本过低用</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">setuptools</span><span class="o">==</span><span class="mf">36.1</span><span class="o">.</span><span class="mi">0</span> <span class="n">解决的</span>
+</pre></div>
+</div>
+<p>2.接下来遇到了 ERROR: Package ‘more-itertools’ requires a different Python: 2.7.5 not in ‘:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">执行</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">more</span><span class="o">-</span><span class="n">itertools</span><span class="o">==</span><span class="mf">5.0</span><span class="o">.</span><span class="mi">0</span> <span class="n">解决</span>
 </pre></div>
 </div>
 </div>
