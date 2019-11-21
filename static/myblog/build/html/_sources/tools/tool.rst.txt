@@ -35,3 +35,13 @@ screen 配置
     ctr+A然后 shift+: 输入 fit
 
 
+reStructureText
+---------------
+
+超好用的一个插件能快速输入
+
+`reStructureText`_ 
+
+.. _reStructureText: http://knowledge.zhaoweiguo.com/7assists/emacs/sublimes/plugins/plugin_rst.html
+
+
