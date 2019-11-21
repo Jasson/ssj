@@ -270,14 +270,15 @@ return nil, errors.New(&quot;非法的token&quot;)
   }
 </pre></div>
 </div>
-<p>time用法</p>
-<p>readTimeOut:=1
-var a time.Duration
-a = readTimeOut  提示错误</p>
-<p>time.Duration 是 int64
-a:=int64(readTimeOut)也是错误</p>
-<blockquote>
-<div>time.Duration(writeTimeOut)//这个 OK</div></blockquote>
+<p>time用法:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">readTimeOut</span><span class="p">:</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">var</span> <span class="n">a</span> <span class="n">time</span><span class="o">.</span><span class="n">Duration</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">readTimeOut</span>  <span class="n">提示错误</span>
+<span class="n">time</span><span class="o">.</span><span class="n">Duration</span> <span class="n">是</span> <span class="n">int64</span>
+<span class="n">a</span><span class="p">:</span><span class="o">=</span><span class="n">int64</span><span class="p">(</span><span class="n">readTimeOut</span><span class="p">)</span><span class="n">也是错误</span>
+ <span class="n">time</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="n">writeTimeOut</span><span class="p">)</span><span class="o">//</span><span class="n">这个</span> <span class="n">OK</span>
+</pre></div>
+</div>
 </div>
 </div>
 
