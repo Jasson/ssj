@@ -21,6 +21,16 @@ Go 遇到的错误
    		return jwtToken, nil
 	}
 
+整型转换为字符串 类型转换丢失数据::
+
+  stirng(u.user_id)丢数据
+  用下面方法解决
+  userId  :=  fmt.Sprintf("%d", u.UserId)
+
+
+
+时间相关
+--------
 time用法::
 
 	readTimeOut:=1
@@ -29,4 +39,26 @@ time用法::
 	time.Duration 是 int64
 	a:=int64(readTimeOut)也是错误
 	 time.Duration(writeTimeOut)//这个 OK
+
+
+map与数字相关的用法
+-------------------
+
+查看 map debug 内容
+
+.. code-block:: go
+
+    package main
+    import "log"
+
+    func main()  {
+       lxw := make(map[string]string)
+       lxw["aaa"]="xxx"
+       lxw["value"]="valu"
+       log.Println(lxw)
+    }
+
+.. image:: /images/mapstring.png
+
+
 
