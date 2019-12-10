@@ -9,7 +9,7 @@
 
 4.每个人都应有有一个收件箱（清空大脑，高效工作）
 
-.. image:: yidijimao.png
+.. image:: ./images/yidijimao.png
 
 
 你在工作中和生活中是否经常一地鸡毛。
