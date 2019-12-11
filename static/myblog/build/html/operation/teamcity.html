@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.1. TeamCity 之旅 &mdash; 郎哲的随手记 V1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. 感想 随手记" href="../inspiration.html" />
+    <link rel="prev" title="7. 运维相关 随手记" href="../operation.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 郎哲的随手记
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                V1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../GoSSJ.html">1. Go 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/unit_test.html">1.1. Go 单元测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id1">如何一个命令执行所有Go的测试代码？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id2">Go 单元测试基本知识</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id3">标记单元测试结果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id4">Go 单元测试进阶命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#ginkgo">补充：ginkgo 工具</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#conf-db">我只想执行一个查询数据的语句，（单元测试涉及到 conf,DB 时需要注意的问题）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/gogetlocal.html">1.2. Go get 本地库</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#go-get-ssl">go get 获取默认是 ssl 验证的</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#parsing-go-mod-unexpected-module-path-auth">parsing go.mod: unexpected module path “auth”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#id1">另外几个错误</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/knowledge.html">1.3. Go 遇到的错误</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/knowledge.html#id1">类型转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/knowledge.html#id2">时间相关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/knowledge.html#map">map与数字相关的用法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../erlang.html">2. Erlang 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../erlang/mnesia.html">2.1. Mnesia遇到的问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../erlang/mnesia.html#id1">Mnesia 数据丢失（并未真正丢失，只是索引丢失）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vue.html">3. Vue 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vue/knowledge.html">3.1. Vue 积累</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vue/knowledge.html#id1">跨域</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker.html">4. Docker 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker_install.html">4.1. Docker 安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_install.html#id1">镜像加速</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_install.html#docker-ce">删除 Docker CE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_install.html#id2">docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_install.html#q-a">Q&amp;A</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/aidocker.html">4.2. 阿里 Docker 服务按量付费</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/first_go.html">4.3. docker 发布 第一个 GO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_go.html#main-go">1.编写一个 main.go</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_go.html#dockerfile">2.创建一个 Dockerfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_go.html#id1">3.编译镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_go.html#id2">4.运行并创建一个容器</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker_compose.html">4.4. docker compose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id1">1、Docker-Compose简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id2">2、Docker-Compose安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id3">3、Docker-Compose卸载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id4">4、Docker-Compose命令格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id5">5、Docker-Compose模板文件简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_compose.html#id6">6、安装Docker-Compose遇到的问题</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker_hub.html">4.5. docker hub发布项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_hub.html#id1">上传镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/docker_hub.html#id2">拉取镜像</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/first_compose.html">4.6. docker-compose 发布 第一个 GO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#main-go">1.编写一个 main.go</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#dockerfile">2.创建一个 Dockerfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#build-sh">3.创建  build.sh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#id1">3.编译镜像：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#docker-compose-yml">4.创建一个docker-compose.yml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#id2">4.运行并创建一个容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/first_compose.html#ok">5.测试 OK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/docker_compose_yml.html">4.7. docker-compose.yml 解释</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">5. 常用工具 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/tool.html">5.1. 常用工具 随手记</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tools/tool.html#screen">screen 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/tool.html#restructuretext">reStructureText</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../database.html">6. 数据库 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/influxdb.html">6.1. InfluxDb 入门</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../database/influxdb.html#shell">shell 访问阿里</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../database/querysummery.html">6.2. InfluxDb 时间范围查询总结</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../database/querysummery.html#id1">问题：数据查不出来，查询数据少了 8 小时</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/querysummery.html#id2">时区知识点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../operation.html">7. 运维相关 随手记</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.1. TeamCity 之旅</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">配置自动化发布</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inspiration.html">8. 感想 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inspiration/inspiration.html">8.1. 感想随手记</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">郎哲的随手记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../operation.html">7. 运维相关 随手记</a> &raquo;</li>
+        
+      <li>7.1. TeamCity 之旅</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="teamcity">
+<h1>7.1. TeamCity 之旅<a class="headerlink" href="#teamcity" title="Permalink to this headline">¶</a></h1>
+<p>TeamCity提供一系列特性可以让团队快速实现持续集成：IDE工具集成、各种消息通知、各种报表、项目的管理、分布式的编译等等，所有的这些，都是让你的团队快速享有持续集成带来的效率提升、高质量的软件保障。
+使用 TeamCity，你能够在几分钟之内为你的项目配置一个构建服务器，它内建了持续单元测试，代码质量分析和早期的构建问题分析报告，你甚至可以在IDE进行。
+TeamCity 提供平滑的学习曲线，你可以逐步的学习经它的高级特性和功能，你很快就能加强你发布管理实践。 本次发布，在可用性作了大量的改进，更新的IDE 插件支持 CVS和SVN，另外还包括一些之前版本不具备的企业级的特性。</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcity.png"><img alt="../_images/teamcity.png" src="../_images/teamcity.png" style="width: 180%;" /></a>
+</div>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>用Docker Image 安装 Server端:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    docker run -it --name teamcity-server-instance  \
+    -v /opt/teamcity/data:/data/teamcity_server/datadir \
+    -v /opt/teamcity/logs:/opt/teamcity/logs  \
+    -p 8111:8111 \
+    jetbrains/teamcity-server
+
+出现此提示时表示初步安装成功，接下来进入后台进行配置
+
+    Startup confirmation is required. Open TeamCity web page in the browser. Server is running at http://localhost:8111
+</pre></div>
+</div>
+<p>数据库选择:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">支持</span> <span class="n">Mysql</span><span class="p">,</span> <span class="n">Oracle</span><span class="p">,</span> <span class="n">PostgreSQL</span><span class="p">,</span><span class="n">HSQLDB</span><span class="p">,</span><span class="n">这里选用的是默认数据</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcity.png"><img alt="../_images/teamcity.png" src="../_images/teamcity.png" style="width: 180%;" /></a>
+</div>
+<p>初次进入会提示创建项目，后续需要主动创建项目.这里提供了简便的用户密码方式授权，同时也提供了 Oauth 方式</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityinit.png"><img alt="../_images/teamcityinit.png" src="../_images/teamcityinit.png" style="width: 180%;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitygit.png"><img alt="../_images/teamcitygit.png" src="../_images/teamcitygit.png" style="width: 180%;" /></a>
+</div>
+<p>根据提示选择 Proceed,此步骤会根据工程目录自动选择可能的Build Steps</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teacitybutilstep.png"><img alt="../_images/teacitybutilstep.png" src="../_images/teacitybutilstep.png" style="width: 180%;" /></a>
+</div>
+<p>首次接触误以为 直接run可以了。会提示没有可用的 agent.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityagent.png"><img alt="../_images/teamcityagent.png" src="../_images/teamcityagent.png" style="width: 180%;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityagent1.png"><img alt="../_images/teamcityagent1.png" src="../_images/teamcityagent1.png" style="width: 180%;" /></a>
+</div>
+<p>安装 Agent，每一台要发布的机器都要安装 agent,有没有批量安装方法呢？用 K8S 环境下如何部署？:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       docker run -p 9090:9090 -it -e SERVER_URL=&quot;http://120.27.8.120:8111&quot;  \
+   -v /data/teamcity_agent/conf:/data/teamcity_agent/conf \
+   -v /var/run/docker.sock:/var/run/docker.sock  \
+   -v /opt/buildagent/work:/opt/buildagent/work \
+   -v /opt/buildagent/temp:/opt/buildagent/temp \
+   -v /opt/buildagent/tools:/opt/buildagent/tools \
+   -v /opt/buildagent/plugins:/opt/buildagent/plugins \
+   -v /opt/buildagent/system:/opt/buildagent/system \
+   jetbrains/teamcity-agent
+
+注意::
+
+       Image 安装要注意制定本地目录，否则 Agent 虽然能 connected但是 build的时候找不到。为了省去不必要的麻烦端口号都有点 9090。
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityagent2.png"><img alt="../_images/teamcityagent2.png" src="../_images/teamcityagent2.png" style="width: 180%;" /></a>
+</div>
+<p>angent安装出现 authorization token 时，复制 token回到 web 管理界面进行 agent 授权。</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityagent3.png"><img alt="../_images/teamcityagent3.png" src="../_images/teamcityagent3.png" style="width: 180%;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityagent4.png"><img alt="../_images/teamcityagent4.png" src="../_images/teamcityagent4.png" style="width: 180%;" /></a>
+</div>
+<p>授权完会进入自动build</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityagent5.png"><img alt="../_images/teamcityagent5.png" src="../_images/teamcityagent5.png" style="width: 180%;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityagent6.png"><img alt="../_images/teamcityagent6.png" src="../_images/teamcityagent6.png" style="width: 180%;" /></a>
+</div>
+<p>到目前为止 整个 TeamCity 就安装完了:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>上面用到了 Token 授权 Server 访问 Agent,在安装 Server 时也曾出现过用 Token 代替用户和密码登陆，后续再要求创建管理员账号。
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>配置自动化发布<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>设置 Build Steps ,此例子总共6 步:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>build, login, push, stop rm, delete image, run.
+Login主要是为了登陆阿里的容器仓库，实际上在非容器化部署的 agent 中只执行一次即可，主机会记住登陆信息。
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityconfig1.png"><img alt="../_images/teamcityconfig1.png" src="../_images/teamcityconfig1.png" style="width: 180%;" /></a>
+</div>
+<p>Buid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>创建 Build,比较简单 Runner Type 选择 Docker 即可。 给 Step 命名为 Build(随便命名可读即可)，Docker command 选择 build,
+Path to file默认 TeamCity 会读取根目录下的 Dockerfile，也可以指定其他目录的 Dockerfile。
+Image name:tag 根基实际情况指定。这里是用的阿里的registry.cn-beijing.aliyuncs.com/langzhe/ssj。
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitybuild.png"><img alt="../_images/teamcitybuild.png" src="../_images/teamcitybuild.png" style="width: 180%;" /></a>
+</div>
+<p>Login:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>授权允许访问仓库,Docker command 中没有 login，这里选择 other,在 Command name 中输入 login.
+在 Additional arguments 中数据用户名密码和地址。
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitylogin.png"><img alt="../_images/teamcitylogin.png" src="../_images/teamcitylogin.png" style="width: 180%;" /></a>
+</div>
+<p>Push  把镜像推到阿里镜像仓库，这个配置比较简单</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitypush.png"><img alt="../_images/teamcitypush.png" src="../_images/teamcitypush.png" style="width: 180%;" /></a>
+</div>
+<dl class="docutils">
+<dt>stop rm::</dt>
+<dd>测试的时候发现经常 Image 不更新，这里在 run 时，先把容器停掉并删除，同时把 Image 删除，run 的时候用的 latest.需要在主机上执行命令Runner Type要选择 CommandLine ,Run:选择 Custom script并输入以下脚本：</dd>
+</dl>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitystop.png"><img alt="../_images/teamcitystop.png" src="../_images/teamcitystop.png" style="width: 180%;" /></a>
+</div>
+<p>删除 Image，与第四步类似，脚本如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rmi `docker images |grep ssj |awk &#39;{print $3}&#39;`
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityremoveimage.png"><img alt="../_images/teamcityremoveimage.png" src="../_images/teamcityremoveimage.png" style="width: 180%;" /></a>
+</div>
+<p>第六步 run,与第二步类似:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DockerComand选择</span> <span class="n">Other</span><span class="p">,</span><span class="n">在</span> <span class="n">Command</span> <span class="n">name</span> <span class="n">中输入</span> <span class="n">run</span><span class="o">.</span>
+<span class="n">Additional</span> <span class="n">arguments</span> <span class="k">for</span> <span class="n">the</span> <span class="n">command</span><span class="p">:</span><span class="n">输入</span><span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">-</span><span class="n">d</span>  <span class="n">registry</span><span class="o">.</span><span class="n">cn</span><span class="o">-</span><span class="n">beijing</span><span class="o">.</span><span class="n">aliyuncs</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">langzhe</span><span class="o">/</span><span class="n">ssj</span>
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcityrun.png"><img alt="../_images/teamcityrun.png" src="../_images/teamcityrun.png" style="width: 180%;" /></a>
+</div>
+<p>然后，执行 Run，这个过程需要反复调试。可以禁用一些 Steps.</p>
+<p>最后一定要设置 Trigers</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitytrigger1.png"><img alt="../_images/teamcitytrigger1.png" src="../_images/teamcitytrigger1.png" style="width: 180%;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/teamcitytrigger2.png"><img alt="../_images/teamcitytrigger2.png" src="../_images/teamcitytrigger2.png" style="width: 180%;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../inspiration.html" class="btn btn-neutral float-right" title="8. 感想 随手记" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../operation.html" class="btn btn-neutral" title="7. 运维相关 随手记" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2029, 郎哲-langzhe 京ICP备19045748 http://www.beian.miit.gov.cn.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'V1.0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
