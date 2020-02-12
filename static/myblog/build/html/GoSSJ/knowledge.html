@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">类型转换</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">时间相关</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#map">map与数字相关的用法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongo-go-driver">mongo-go-driver 连接错误</a></li>
 </ul>
 </li>
 </ul>
@@ -314,6 +315,27 @@ return nil, errors.New(&quot;非法的token&quot;)
 </pre></div>
 </div>
 <img alt="../_images/mapstring.png" src="../_images/mapstring.png" />
+</div>
+<div class="section" id="mongo-go-driver">
+<h2>mongo-go-driver 连接错误<a class="headerlink" href="#mongo-go-driver" title="Permalink to this headline">¶</a></h2>
+<p>连接地址:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">10.128</span><span class="o">.</span><span class="mf">132.16</span><span class="p">:</span><span class="mi">27017</span>
+</pre></div>
+</div>
+<p>错误信息:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err</span><span class="p">:</span><span class="o">=</span> <span class="n">server</span> <span class="n">selection</span> <span class="n">error</span><span class="p">:</span> <span class="n">server</span> <span class="n">selection</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">current</span> <span class="n">topology</span><span class="p">:</span> <span class="p">{</span> <span class="n">Type</span><span class="p">:</span> <span class="n">ReplicaSetNoPrimary</span><span class="p">,</span> <span class="n">Servers</span><span class="p">:</span> <span class="p">[{</span> <span class="n">Addr</span><span class="p">:</span> <span class="mf">10.140</span><span class="o">.</span><span class="mf">2.18</span><span class="p">:</span><span class="mi">27017</span><span class="p">,</span> <span class="n">Type</span><span class="p">:</span> <span class="n">Unknown</span><span class="p">,</span> <span class="n">State</span><span class="p">:</span> <span class="n">Connected</span><span class="p">,</span> <span class="n">Average</span> <span class="n">RTT</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Last</span> <span class="n">error</span><span class="p">:</span> <span class="n">connection</span><span class="p">()</span> <span class="p">:</span> <span class="n">dial</span> <span class="n">tcp</span> <span class="mf">10.140</span><span class="o">.</span><span class="mf">2.18</span><span class="p">:</span><span class="mi">27017</span><span class="p">:</span> <span class="n">i</span><span class="o">/</span><span class="n">o</span> <span class="n">timeout</span> <span class="p">},</span> <span class="p">]</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>解决方法 增加 connect=direct 参数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>10.128.132.16:27017/?connect=direct
+Regarding your comment on why using mongo shell, or PyMongo works.
+
+This is due to the difference in connection mode. When specifying a single node, i.e. mongodb://node1:27017 in shell or PyMongo, server discovery are not being made. Instead it will attempt to connect to that single node (not as part as a replica set). The catch is that you need to connect to the primary node of the replica set to write (you have to know which one). If you would like to connect as a replica set, you have to define the replica set name.
+
+In contrast to the mongo-go-driver, by default it would perform server discovery and attempt to connect as a replica set. If you would like to connect as a single node, then you need to specify connect=direct in the connection URI.
+</pre></div>
+</div>
+<p><a class="reference external" href="https://ask.csdn.net/questions/1019794">参考文档</a></p>
 </div>
 </div>
 
