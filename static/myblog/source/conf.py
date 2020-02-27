@@ -39,7 +39,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'郎哲的随手记'
-copyright = u'2019-2029, 郎哲-langzhe 京ICP备19045748 http://www.beian.miit.gov.cn'
+copyright = u'2019-2029, 郎哲-langzhe '
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
