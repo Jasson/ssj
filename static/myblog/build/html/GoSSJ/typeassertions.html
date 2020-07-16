@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8.1. 感想随手记 &mdash; 郎哲的随手记 V1.0.0 documentation</title>
+  <title>1.4. Go mapinterface-struct-assertions与断言 &mdash; 郎哲的随手记 V1.0.0 documentation</title>
   
 
   
@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="8. 感想 随手记" href="../inspiration.html" /> 
+    <link rel="next" title="2. Erlang 随手记" href="../erlang.html" />
+    <link rel="prev" title="1.3. Go 遇到的错误" href="knowledge.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -82,33 +83,33 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../GoSSJ.html">1. Go 随手记</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/unit_test.html">1.1. Go 单元测试</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id1">如何一个命令执行所有Go的测试代码？</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id2">Go 单元测试基本知识</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id3">标记单元测试结果</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id4">Go 单元测试进阶命令</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#ginkgo">补充：ginkgo 工具</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#conf-db">我只想执行一个查询数据的语句，（单元测试涉及到 conf,DB 时需要注意的问题）</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../GoSSJ.html">1. Go 随手记</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unit_test.html">1.1. Go 单元测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit_test.html#id1">如何一个命令执行所有Go的测试代码？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit_test.html#id2">Go 单元测试基本知识</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit_test.html#id3">标记单元测试结果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit_test.html#id4">Go 单元测试进阶命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit_test.html#ginkgo">补充：ginkgo 工具</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit_test.html#conf-db">我只想执行一个查询数据的语句，（单元测试涉及到 conf,DB 时需要注意的问题）</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/gogetlocal.html">1.2. Go get 本地库</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#go-get-ssl">go get 获取默认是 ssl 验证的</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#parsing-go-mod-unexpected-module-path-auth">parsing go.mod: unexpected module path “auth”</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/gogetlocal.html#id1">另外几个错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gogetlocal.html">1.2. Go get 本地库</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gogetlocal.html#go-get-ssl">go get 获取默认是 ssl 验证的</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gogetlocal.html#parsing-go-mod-unexpected-module-path-auth">parsing go.mod: unexpected module path “auth”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gogetlocal.html#id1">另外几个错误</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/knowledge.html">1.3. Go 遇到的错误</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/knowledge.html#id1">类型转换</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/knowledge.html#id2">时间相关</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/knowledge.html#map">map与数字相关的用法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/knowledge.html#mongo-go-driver">mongo-go-driver 连接错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knowledge.html">1.3. Go 遇到的错误</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="knowledge.html#id1">类型转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="knowledge.html#id2">时间相关</a></li>
+<li class="toctree-l3"><a class="reference internal" href="knowledge.html#map">map与数字相关的用法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="knowledge.html#mongo-go-driver">mongo-go-driver 连接错误</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../GoSSJ/typeassertions.html">1.4. Go mapinterface-struct-assertions与断言</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/typeassertions.html#go-vs-java-erlang">Go 中类型断言 VS Java,Erlang断言</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/typeassertions.html#go">Go 类型断言</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../GoSSJ/typeassertions.html#id1">应用-实践</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.4. Go mapinterface-struct-assertions与断言</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#go-vs-java-erlang">Go 中类型断言 VS Java,Erlang断言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#go">Go 类型断言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">应用-实践</a></li>
 </ul>
 </li>
 </ul>
@@ -198,8 +199,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="../inspiration.html">8. 感想 随手记</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">8.1. 感想随手记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inspiration.html">8. 感想 随手记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inspiration/inspiration.html">8.1. 感想随手记</a></li>
 </ul>
 </li>
 </ul>
@@ -247,9 +248,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../inspiration.html">8. 感想 随手记</a> &raquo;</li>
+          <li><a href="../GoSSJ.html">1. Go 随手记</a> &raquo;</li>
         
-      <li>8.1. 感想随手记</li>
+      <li>1.4. Go mapinterface-struct-assertions与断言</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -266,24 +267,79 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>8.1. 感想随手记<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>1.有一个梦想迟迟没有实现，它不能称之为梦想，那只是大脑中无数个想法中的一员。</p>
-<p>2.青蛙每天吃，一天不吃就闹心。</p>
-<p>3.有些事情想的简单只因为高度不够。属下转岗 要从双方HR,管理角度，员工角度，多方面考虑如何妥善处理好。即如何多赢，而不是我爽你爽。</p>
-<p>4.每个人都应有有一个收件箱（清空大脑，高效工作）</p>
-<img alt="../_images/yidijimao.png" src="../_images/yidijimao.png" />
-<p>你在工作中和生活中是否经常一地鸡毛。
-你工作中是否经常忘记老板安排的任务。
-你生活中是否忘记爱人的生日，甚至结婚纪念日，孩子家长会，甚至忘记加油和还信用卡。
-同时你在认真工作的时候当别人来打断你的时候，你又一肚子火气呢，甚至在电脑旁边放了一个收款码，一句话一块钱。
-即使你脾气好，没有一肚子火气同样会出现以下场景。
-试想一下：当你在专注的工作时（写代码，写方案，写 PPT）,总有人打断然后去处理琐事，不用多，一个上午打断 2-3 次一个上午就废掉了。当然有的时候不请自来者丢下一句话就走了，这个人可能是你的领导，可能是你的平级同事，也可能是你的下属。面对这些琐事频繁应付会整的头大，忙还一团糟。在繁忙的工作中，很容易会落掉，忘记某一个事情。当你担心忘记的时候，又拼命用大脑记住，CPU 就那么点容量和速度，往往出现既记又记不住，手中事情又没做好，结局就是眼下事情没做好，很可能领导安排的任务没记住–呵呵惨了吧。</p>
-<p>有没有办法让既有办法记住也不会耽误手下的事情的呢？有，鱼和熊掌可以兼得。这就是收件箱思维。</p>
-<p>收件箱思维，所有过来的大事小事通通往里面扔，扔进去就立刻做手中的事情。开始体验扔东西的快感吧！
-有了收件箱，需要记得的琐碎事情不需要记住，不会占用你的大脑，大脑可以快速高效的工作了。</p>
-<p>需要注意收件箱的内容不能多的装不下，太多了就失去意义了，要每天清空。清空不仅仅是完成收件箱的任务，还是只要排计划。把需要时间比较长的任务安排的任务计划里面。
-根据收件箱随时调整本周/本月计划，优先做重要的事情,开始你的高效旅程吧。</p>
+  <div class="section" id="go-mapinterface-struct-assertions">
+<h1>1.4. Go mapinterface-struct-assertions与断言<a class="headerlink" href="#go-mapinterface-struct-assertions" title="Permalink to this headline">¶</a></h1>
+<p>类型转换
+使我纠结了好久的断言</p>
+<div class="section" id="go-vs-java-erlang">
+<h2>Go 中类型断言 VS Java,Erlang断言<a class="headerlink" href="#go-vs-java-erlang" title="Permalink to this headline">¶</a></h2>
+<p>Go 里面叫类型断言不是断言，Java 和 Erlang编程中常用断言的地方都是在单元测试中,都有醒目的关键字“assert”参与。</p>
+<p>当然在 Erlang 里面 guard 也叫断言，好多函数及 BIF 函数都是叫断言，常用就不自知（is_binary(),is_float(),node()，hd()等）</p>
+</div>
+<div class="section" id="go">
+<h2>Go 类型断言<a class="headerlink" href="#go" title="Permalink to this headline">¶</a></h2>
+<p>在go 里面的类型断言与在 Java 和 Erlang 里面的断言相比不一回事。
+Go 的断言 这样叫先入为主错误的叫法。原名叫“类型断言（Typeassertions）”
+类型断言 提供了访问接口值底层具体值的方式。
+它的关键就是判断类，并把值赋予新变量</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="nb">type</span> <span class="n">assertion</span> <span class="n">provides</span> <span class="n">access</span> <span class="n">to</span> <span class="n">an</span> <span class="n">interface</span> <span class="n">value</span><span class="s1">&#39;s underlying concrete value.</span>
+<span class="n">t</span> <span class="p">:</span><span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>该语句断言接口值 i 保存了具体类型 T，并将其底层类型为 T 的值赋予变量 t。
+第一次看到这里（<a class="reference external" href="https://tour.go-zh.org/methods/15">https://tour.go-zh.org/methods/15</a>） 例子也看了，也写了，实际使用的时候压根不记得这回事。
+重要的作用就是把 interface 转换成你想要的数据。 好比 Java Object class 转换成子类，类型断言粗暴的翻译没有表达出原来的含义，表达出类型转换回去好了
+表达式 T(v) 将值 v 转换为类型 T。</p>
+</div>
+<div class="section" id="id1">
+<h2>应用-实践<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>写 Erlang 写久了都忘记还有类型转换这回事了。特别是定义函数时压根不考虑类型，直接定义变量使用就行，传 record还是 list，aotm, tuple，只要使用的时候能清楚的知道就行，感觉 record不爽直接换成传 list 也是可以的，当然调用地方要传递参数也要修改成 list。这都不重要。
+重要的是返回结果可以是任意类型的，返回直接使用就行,如果你愿意一个函数可以返回 list，另一些情况返回 record，完全是允许的。“所见即所得”，说一不二，有什么说（返回）什么，一直用一直爽。直到遇到Go 一下子爽不起来了。返回的都是 interface 需要转换。
+Go 实践中遇到
+第一个问题: interface 如何转换为 struct
+第一次遇到没搞定，查到了 interface 转 map-interface
+把变量放入 context</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sid := make(map[string]interface{})
+sid[&quot;user_id&quot;] = &quot;langxw1&quot;
+sid[&quot;sid&quot;] = &quot;langsid&quot;
+content.Set(&quot;sid&quot;, sid)
+
+//log.Println(&quot;sid:=&quot;, sid)
+if val, ok := content.Get(&quot;sid&quot;); ok {
+  log.Println(&quot;val:=&quot;, val)
+  sidMap, err := cast.ToStringMapE(val)
+  if err != nil {
+     log.Println(err)
+   }
+  userId := sidMap[&quot;user_id&quot;].(string)
+  log.Println(&quot;userId:=&quot;, userId)
+}
+再通过 userId := sidMap[&quot;user_id&quot;].(string) 取出 user_id
+这里已经用了过的断言 type assertion，当初无知
+
+实际上完全 可以用&quot;sidMap := val.(map[string]interface{})”取代 cast.ToStringMapE
+进一步了解 用 map-interface 可读写比较差，当初是无知采用的，现在回过够来重新写
+type SID struct {
+ UserId string `json:&quot;user_id&quot;`
+ Sid    string `json:&quot;sid&quot;`
+}
+
+sid := SID{&quot;langxw&quot;, &quot;sid&quot;}
+content.Set(&quot;sid&quot;, sid)
+
+if val, ok := content.Get(&quot;sid&quot;); ok {
+   sidStruct := val.(SID)
+   log.Println(&quot;sid:=&quot;, sidStruct)
+}
+</pre></div>
+</div>
+<p>哎，砍柴不误磨刀工，没有磨刀就去砍柴了，导致路途坎坷，沾了一身泥，不得不回头重新来
+前期因为解决 interface 转换 map-interface 和 struct 看了好多反射的内容，及找到了 <a class="reference external" href="https://github.com/goinggo/mapstructure">https://github.com/goinggo/mapstructure</a>
+mapstructure is a Go library for decoding generic map values to structures and vice versa, while providing helpful error handling.
+This library is most useful when decoding values from some data stream (JSON, Gob, etc.) where you don’t quite know the structure of the underlying data until you read a part of it. You can therefore read a map[string]interface{} and use this library to decode it into the proper underlying native Go structure.</p>
+</div>
 </div>
 
 
@@ -294,8 +350,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../erlang.html" class="btn btn-neutral float-right" title="2. Erlang 随手记" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="../inspiration.html" class="btn btn-neutral" title="8. 感想 随手记" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="knowledge.html" class="btn btn-neutral" title="1.3. Go 遇到的错误" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
