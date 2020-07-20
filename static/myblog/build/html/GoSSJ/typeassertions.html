@@ -108,7 +108,7 @@
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1.4. Go mapinterface-struct-assertions与断言</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#go-vs-java-erlang">Go 中类型断言 VS Java,Erlang断言</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#go">Go 类型断言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#go">Go 类型断言 灰常重要。。。</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">应用-实践</a></li>
 </ul>
 </li>
@@ -277,7 +277,7 @@
 <p>当然在 Erlang 里面 guard 也叫断言，好多函数及 BIF 函数都是叫断言，常用就不自知（is_binary(),is_float(),node()，hd()等）</p>
 </div>
 <div class="section" id="go">
-<h2>Go 类型断言<a class="headerlink" href="#go" title="Permalink to this headline">¶</a></h2>
+<h2>Go 类型断言 灰常重要。。。<a class="headerlink" href="#go" title="Permalink to this headline">¶</a></h2>
 <p>在go 里面的类型断言与在 Java 和 Erlang 里面的断言相比不一回事。
 Go 的断言 这样叫先入为主错误的叫法。原名叫“类型断言（Typeassertions）”
 类型断言 提供了访问接口值底层具体值的方式。
@@ -301,27 +301,30 @@ Go 实践中遇到
 第一个问题: interface 如何转换为 struct
 第一次遇到没搞定，查到了 interface 转 map-interface
 把变量放入 context</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sid := make(map[string]interface{})
-sid[&quot;user_id&quot;] = &quot;langxw1&quot;
-sid[&quot;sid&quot;] = &quot;langsid&quot;
-content.Set(&quot;sid&quot;, sid)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sid</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="nb">map</span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="n">interface</span><span class="p">{})</span>
+<span class="n">sid</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;langxw1&quot;</span>
+<span class="n">sid</span><span class="p">[</span><span class="s2">&quot;sid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;langsid&quot;</span>
+<span class="n">content</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="s2">&quot;sid&quot;</span><span class="p">,</span> <span class="n">sid</span><span class="p">)</span>
 
-//log.Println(&quot;sid:=&quot;, sid)
-if val, ok := content.Get(&quot;sid&quot;); ok {
-  log.Println(&quot;val:=&quot;, val)
-  sidMap, err := cast.ToStringMapE(val)
-  if err != nil {
-     log.Println(err)
-   }
-  userId := sidMap[&quot;user_id&quot;].(string)
-  log.Println(&quot;userId:=&quot;, userId)
-}
-再通过 userId := sidMap[&quot;user_id&quot;].(string) 取出 user_id
-这里已经用了过的断言 type assertion，当初无知
-
-实际上完全 可以用&quot;sidMap := val.(map[string]interface{})”取代 cast.ToStringMapE
-进一步了解 用 map-interface 可读写比较差，当初是无知采用的，现在回过够来重新写
-type SID struct {
+<span class="o">//</span><span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;sid:=&quot;</span><span class="p">,</span> <span class="n">sid</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">val</span><span class="p">,</span> <span class="n">ok</span> <span class="p">:</span><span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="s2">&quot;sid&quot;</span><span class="p">);</span> <span class="n">ok</span> <span class="p">{</span>
+  <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;val:=&quot;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+  <span class="n">sidMap</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">cast</span><span class="o">.</span><span class="n">ToStringMapE</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+     <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+   <span class="p">}</span>
+  <span class="n">userId</span> <span class="p">:</span><span class="o">=</span> <span class="n">sidMap</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;userId:=&quot;</span><span class="p">,</span> <span class="n">userId</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>再通过 userId := sidMap[“user_id”].(string) 取出 user_id</dt>
+<dd>这里已经用了过的断言 type assertion，当初无知</dd>
+<dt>实际上完全 可以用”sidMap := val.(map[string]interface{})”取代 cast.ToStringMapE</dt>
+<dd>进一步了解 用 map-interface 可读写比较差，当初是无知采用的，现在回过够来重新写</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>type SID struct {
  UserId string `json:&quot;user_id&quot;`
  Sid    string `json:&quot;sid&quot;`
 }
@@ -333,6 +336,55 @@ if val, ok := content.Get(&quot;sid&quot;); ok {
    sidStruct := val.(SID)
    log.Println(&quot;sid:=&quot;, sidStruct)
 }
+</pre></div>
+</div>
+<p>有同学就问了，如果类型断言是别的 struct 会怎么样？当然会出错.</p>
+<p>例如：定义 interface 原来数据是SID struct 用 SID1 去断言</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>type SID struct {
+   UserId string `json:&quot;user_id&quot;`
+   Sid    string `json:&quot;sid&quot;`
+ }
+
+type SID1 struct {
+ UserId string `json:&quot;user_id&quot;`
+ Sid    string `json:&quot;sid&quot;`
+}
+
+sid := SID{&quot;langxw&quot;, &quot;sid&quot;}
+content.Set(&quot;sid&quot;, sid)
+
+if val, ok := content.Get(&quot;sid&quot;); ok {
+   sidStruct := val.(SID1)
+   log.Println(&quot;sid:=&quot;, sidStruct)
+}
+</pre></div>
+</div>
+<p>错误信息:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">jason</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">hellogin</span><span class="o">/</span><span class="n">example</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">101</span> <span class="o">+</span><span class="mh">0x553</span>
+<span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="o">.</span><span class="p">(</span><span class="o">*</span><span class="n">Context</span><span class="p">)</span><span class="o">.</span><span class="n">Next</span><span class="p">(</span><span class="mh">0xc0000ca790</span><span class="p">)</span>
+  <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">jason</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">pkg</span><span class="o">/</span><span class="n">mod</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="nd">@v1</span><span class="o">.</span><span class="mf">4.0</span><span class="o">/</span><span class="n">context</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">124</span> <span class="o">+</span><span class="mh">0x3a</span>
+<span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="o">.</span><span class="n">LoggerWithConfig</span><span class="o">.</span><span class="n">func1</span><span class="p">(</span><span class="mh">0xc0000ca790</span><span class="p">)</span>
+  <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">jason</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">pkg</span><span class="o">/</span><span class="n">mod</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="nd">@v1</span><span class="o">.</span><span class="mf">4.0</span><span class="o">/</span><span class="n">logger</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">240</span> <span class="o">+</span><span class="mh">0xe1</span>
+<span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="o">.</span><span class="p">(</span><span class="o">*</span><span class="n">Context</span><span class="p">)</span><span class="o">.</span><span class="n">Next</span><span class="p">(</span><span class="mh">0xc0000ca790</span><span class="p">)</span>
+  <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">jason</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">pkg</span><span class="o">/</span><span class="n">mod</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="nd">@v1</span><span class="o">.</span><span class="mf">4.0</span><span class="o">/</span><span class="n">context</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">124</span> <span class="o">+</span><span class="mh">0x3a</span>
+<span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="o">.</span><span class="p">(</span><span class="o">*</span><span class="n">Engine</span><span class="p">)</span><span class="o">.</span><span class="n">handleHTTPRequest</span><span class="p">(</span><span class="mh">0xc000222000</span><span class="p">,</span> <span class="mh">0xc0000ca790</span><span class="p">)</span>
+ <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">jason</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">pkg</span><span class="o">/</span><span class="n">mod</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="nd">@v1</span><span class="o">.</span><span class="mf">4.0</span><span class="o">/</span><span class="n">gin</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">389</span> <span class="o">+</span><span class="mh">0x5b2</span>
+<span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="o">.</span><span class="p">(</span><span class="o">*</span><span class="n">Engine</span><span class="p">)</span><span class="o">.</span><span class="n">ServeHTTP</span><span class="p">(</span><span class="mh">0xc000222000</span><span class="p">,</span> <span class="mh">0x17e3d60</span><span class="p">,</span> <span class="mh">0xc0002620e0</span><span class="p">,</span> <span class="mh">0xc00023c100</span><span class="p">)</span>
+  <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">jason</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">pkg</span><span class="o">/</span><span class="n">mod</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gin</span><span class="o">-</span><span class="n">gonic</span><span class="o">/</span><span class="n">gin</span><span class="nd">@v1</span><span class="o">.</span><span class="mf">4.0</span><span class="o">/</span><span class="n">gin</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">351</span> <span class="o">+</span><span class="mh">0x134</span>
+<span class="n">net</span><span class="o">/</span><span class="n">http</span><span class="o">.</span><span class="n">serverHandler</span><span class="o">.</span><span class="n">ServeHTTP</span><span class="p">(</span><span class="mh">0xc000228680</span><span class="p">,</span> <span class="mh">0x17e3d60</span><span class="p">,</span> <span class="mh">0xc0002620e0</span><span class="p">,</span> <span class="mh">0xc00023c100</span><span class="p">)</span>
+  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">net</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">server</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">2774</span> <span class="o">+</span><span class="mh">0xa8</span>
+<span class="n">net</span><span class="o">/</span><span class="n">http</span><span class="o">.</span><span class="p">(</span><span class="o">*</span><span class="n">conn</span><span class="p">)</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="mh">0xc0000a5e00</span><span class="p">,</span> <span class="mh">0x17e51e0</span><span class="p">,</span> <span class="mh">0xc000068280</span><span class="p">)</span>
+  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">net</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">server</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">1878</span> <span class="o">+</span><span class="mh">0x851</span>
+<span class="n">created</span> <span class="n">by</span> <span class="n">net</span><span class="o">/</span><span class="n">http</span><span class="o">.</span><span class="p">(</span><span class="o">*</span><span class="n">Server</span><span class="p">)</span><span class="o">.</span><span class="n">Serve</span>
+   <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">net</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">server</span><span class="o">.</span><span class="n">go</span><span class="p">:</span><span class="mi">2884</span> <span class="o">+</span><span class="mh">0x2f4</span>
+</pre></div>
+</div>
+<p>接下来怎么办呢？ Go 提供了两种类型断言，varI.(T)检查类型，另一种是t,ok:=varI.(T)
+为了 判断 一个接口值是否保存了一个特定的类型，类型断言可返回两个值：其底层值以及一个报告断言是否成功的布尔值。</p>
+<p>代码修改为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">sidStruct</span><span class="p">,</span> <span class="n">ok</span> <span class="p">:</span><span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="p">(</span><span class="n">SID1</span><span class="p">);</span> <span class="n">ok</span> <span class="p">{</span>
+   <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;sid:=&quot;</span><span class="p">,</span> <span class="n">sidStruct</span><span class="p">)</span>
+ <span class="p">}</span>
 </pre></div>
 </div>
 <p>哎，砍柴不误磨刀工，没有磨刀就去砍柴了，导致路途坎坷，沾了一身泥，不得不回头重新来

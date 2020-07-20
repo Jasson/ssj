@@ -13,8 +13,8 @@ Go 里面叫类型断言不是断言，Java 和 Erlang编程中常用断言的�
 当然在 Erlang 里面 guard 也叫断言，好多函数及 BIF 函数都是叫断言，常用就不自知（is_binary(),is_float(),node()，hd()等）
 
 
-Go 类型断言
---------------------
+Go 类型断言 灰常重要。。。
+------------------------------
 
 在go 里面的类型断言与在 Java 和 Erlang 里面的断言相比不一回事。
 Go 的断言 这样叫先入为主错误的叫法。原名叫“类型断言（Typeassertions）”
@@ -59,11 +59,17 @@ Go 实践中遇到
     userId := sidMap["user_id"].(string)
     log.Println("userId:=", userId)
   }
-  再通过 userId := sidMap["user_id"].(string) 取出 user_id
+
+再通过 userId := sidMap["user_id"].(string) 取出 user_id
   这里已经用了过的断言 type assertion，当初无知
- 
-  实际上完全 可以用"sidMap := val.(map[string]interface{})”取代 cast.ToStringMapE
+
+实际上完全 可以用"sidMap := val.(map[string]interface{})”取代 cast.ToStringMapE
   进一步了解 用 map-interface 可读写比较差，当初是无知采用的，现在回过够来重新写
+
+
+::
+
+
   type SID struct {
    UserId string `json:"user_id"`
    Sid    string `json:"sid"`
@@ -76,6 +82,60 @@ Go 实践中遇到
      sidStruct := val.(SID)
      log.Println("sid:=", sidStruct)
   }
+
+有同学就问了，如果类型断言是别的 struct 会怎么样？当然会出错.
+
+例如：定义 interface 原来数据是SID struct 用 SID1 去断言 ::
+  
+  type SID struct {
+     UserId string `json:"user_id"`
+     Sid    string `json:"sid"`
+   }
+
+  type SID1 struct {
+   UserId string `json:"user_id"`
+   Sid    string `json:"sid"`
+  }
+
+  sid := SID{"langxw", "sid"}
+  content.Set("sid", sid)
+
+  if val, ok := content.Get("sid"); ok {
+     sidStruct := val.(SID1)
+     log.Println("sid:=", sidStruct)
+  }
+
+
+错误信息: ::
+  
+    /Users/jason/go/src/hellogin/example.go:101 +0x553
+  github.com/gin-gonic/gin.(*Context).Next(0xc0000ca790)
+    /Users/jason/go/pkg/mod/github.com/gin-gonic/gin@v1.4.0/context.go:124 +0x3a
+  github.com/gin-gonic/gin.LoggerWithConfig.func1(0xc0000ca790)
+    /Users/jason/go/pkg/mod/github.com/gin-gonic/gin@v1.4.0/logger.go:240 +0xe1
+  github.com/gin-gonic/gin.(*Context).Next(0xc0000ca790)
+    /Users/jason/go/pkg/mod/github.com/gin-gonic/gin@v1.4.0/context.go:124 +0x3a
+  github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000222000, 0xc0000ca790)
+   /Users/jason/go/pkg/mod/github.com/gin-gonic/gin@v1.4.0/gin.go:389 +0x5b2
+  github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000222000, 0x17e3d60, 0xc0002620e0, 0xc00023c100)
+    /Users/jason/go/pkg/mod/github.com/gin-gonic/gin@v1.4.0/gin.go:351 +0x134
+  net/http.serverHandler.ServeHTTP(0xc000228680, 0x17e3d60, 0xc0002620e0, 0xc00023c100)
+    /usr/local/go/src/net/http/server.go:2774 +0xa8
+  net/http.(*conn).serve(0xc0000a5e00, 0x17e51e0, 0xc000068280)
+    /usr/local/go/src/net/http/server.go:1878 +0x851
+  created by net/http.(*Server).Serve
+     /usr/local/go/src/net/http/server.go:2884 +0x2f4
+
+
+接下来怎么办呢？ Go 提供了两种类型断言，varI.(T)检查类型，另一种是t,ok:=varI.(T)
+为了 判断 一个接口值是否保存了一个特定的类型，类型断言可返回两个值：其底层值以及一个报告断言是否成功的布尔值。
+
+代码修改为： ::
+  
+     if sidStruct, ok := val.(SID1); ok {
+        log.Println("sid:=", sidStruct)
+      }
+
 
 
 哎，砍柴不误磨刀工，没有磨刀就去砍柴了，导致路途坎坷，沾了一身泥，不得不回头重新来
