@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Go mapinterface-interface-json 转换 &mdash; 郎哲的随手记 V1.0.0 documentation</title>
+  <title>1.5. Go mapinterface-interface-json 转换 &mdash; 郎哲的随手记 V1.0.0 documentation</title>
   
 
   
@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Erlang 随手记" href="../erlang.html" />
+    <link rel="prev" title="1.4. Go mapinterface-struct-assertions与断言" href="typeassertions.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -80,8 +82,8 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../GoSSJ.html">1. Go 随手记</a><ul>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../GoSSJ.html">1. Go 随手记</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="unit_test.html">1.1. Go 单元测试</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="unit_test.html#id1">如何一个命令执行所有Go的测试代码？</a></li>
 <li class="toctree-l3"><a class="reference internal" href="unit_test.html#id2">Go 单元测试基本知识</a></li>
@@ -110,6 +112,7 @@
 <li class="toctree-l3"><a class="reference internal" href="typeassertions.html#id1">应用-实践</a></li>
 </ul>
 </li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.5. Go mapinterface-interface-json 转换</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../erlang.html">2. Erlang 随手记</a><ul>
@@ -246,7 +249,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Go mapinterface-interface-json 转换</li>
+          <li><a href="../GoSSJ.html">1. Go 随手记</a> &raquo;</li>
+        
+      <li>1.5. Go mapinterface-interface-json 转换</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -264,7 +269,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="go-mapinterface-interface-json">
-<h1>Go mapinterface-interface-json 转换<a class="headerlink" href="#go-mapinterface-interface-json" title="Permalink to this headline">¶</a></h1>
+<h1>1.5. Go mapinterface-interface-json 转换<a class="headerlink" href="#go-mapinterface-interface-json" title="Permalink to this headline">¶</a></h1>
 <p>此笔记来自于对 interface 如何转换为 struct 疑问,以至于研究了一下 Go 的反射，甚至基于反射去实现一些功能（也不能说错误就是造轮子了，没必要，还是不必要的轮子）</p>
 <p>网上查到有人用 把读出的 interface转为 Json，在把 Jason 转为 map-interface</p>
 <p>来自 <a class="reference external" href="https://blog.csdn.net/xiaoquantouer/article/details/80233177">这里有详细的转换例子</a></p>
@@ -276,6 +281,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../erlang.html" class="btn btn-neutral float-right" title="2. Erlang 随手记" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="typeassertions.html" class="btn btn-neutral" title="1.4. Go mapinterface-struct-assertions与断言" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
