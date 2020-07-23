@@ -5,5 +5,5 @@
     :maxdepth: 2
 
     tools/tool.rst
-    tools/too_Charies
+    tools/tool_Charies
   

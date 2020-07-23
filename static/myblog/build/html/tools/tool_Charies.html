@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Charles 抓包工具 &mdash; 郎哲的随手记 V1.0.0 documentation</title>
+  <title>5.2. Charles 抓包工具 &mdash; 郎哲的随手记 V1.0.0 documentation</title>
   
 
   
@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. 数据库 随手记" href="../database.html" />
+    <link rel="prev" title="5.1. 常用工具 随手记" href="tool.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -80,7 +82,7 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../GoSSJ.html">1. Go 随手记</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../GoSSJ/unit_test.html">1.1. Go 单元测试</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../GoSSJ/unit_test.html#id1">如何一个命令执行所有Go的测试代码？</a></li>
@@ -170,10 +172,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../docker/docker_compose_yml.html">4.7. docker-compose.yml 解释</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tools.html">5. 常用工具 随手记</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="../tools.html">5. 常用工具 随手记</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="tool.html">5.1. 常用工具 随手记</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tool.html#screen">screen 配置</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tool.html#restructuretext">reStructureText</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.2. Charles 抓包工具</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">不需要太多技术知识轻松实现抓包-非常直观</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssl-zip">坑一 误以为下载完 ssl.zip安装就好了，其实只是刚刚开始</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#http-charlesproxy-com-getssl">坑二 手机访问 http://charlesproxy.com/getssl 安装证书 抓包手机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crt-pc">坑三 双击crt文件，选择总是信任就可以了- 配置 抓包 pc</a></li>
 </ul>
 </li>
 </ul>
@@ -247,7 +256,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Charles 抓包工具</li>
+          <li><a href="../tools.html">5. 常用工具 随手记</a> &raquo;</li>
+        
+      <li>5.2. Charles 抓包工具</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -265,7 +276,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="charles">
-<h1>Charles 抓包工具<a class="headerlink" href="#charles" title="Permalink to this headline">¶</a></h1>
+<h1>5.2. Charles 抓包工具<a class="headerlink" href="#charles" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>不需要太多技术知识轻松实现抓包-非常直观<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>之前主要用来联调 APP 抓包http 包，线上 https 抓包时一直乱码没解决，今天花了半天时间彻底的解决了。</p>
@@ -299,6 +310,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../database.html" class="btn btn-neutral float-right" title="6. 数据库 随手记" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tool.html" class="btn btn-neutral" title="5.1. 常用工具 随手记" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
